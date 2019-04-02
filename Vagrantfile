@@ -14,6 +14,8 @@ Vagrant.configure("2") do |config|
   # boxes at https://vagrantcloud.com/search.
   config.vm.box = "ubuntu/xenial64"
   config.vm.provision :shell, path: "provision.sh"
+  config.vm.synced_folder "~/Development", "/src"
+
   config.vm.provision :ansible do |ansible|
     ansible.playbook = "provisioning/playbook.yml"
     ansible.extra_vars = { ansible_python_interpreter:"/usr/bin/python3" }

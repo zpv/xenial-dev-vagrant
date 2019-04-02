@@ -9,6 +9,7 @@
     - zsh
     - git
     - language-pack-en
+    - build-essential
 
 - name: Clone oh-my-zsh repo
   git:
@@ -17,6 +18,12 @@
 
 - name: Create a new zsh config from the template in the repo
   command: cp /home/vagrant/.oh-my-zsh/templates/zshrc.zsh-template /home/vagrant/.zshrc
+
+- name: Configure Git line endings
+  become: yes
+  user: 
+    name: vagrant
+    shell: git config --global core.autocrlf true
 
 - name: Set zsh as default shell
   become: yes
